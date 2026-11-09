@@ -1,19 +1,19 @@
-# SiGe HBT RF Characterization with IHP SG13G2 OpenPDK
+# Open-Source RFIC Characterization and EM Verification with IHP SG13G2
 
-**DC, small-signal, S-parameter, noise and stability analysis of an RF-biased SiGe heterojunction bipolar transistor (HBT)** using an open-source EDA workflow.
+**Circuit-level SiGe HBT characterization and layout-based electromagnetic verification** using an open-source IHP SG13G2 flow.
 
 ![RF characterization workflow](assets/analysis-workflow.svg)
 
 **Context:** Summer 2026 research internship at Karlsruhe Institute of Technology (KIT)  
 **Researcher:** Ece Ceyla Demir · Electrical and Electronics Engineering, Middle East Technical University (METU)  
 **Technology:** IHP SG13G2 OpenPDK, `npn13G2` HBT  
-**Tools:** Xschem, Ngspice, IIC-OSIC-TOOLS, Docker, Ubuntu
+**Tools:** Xschem, Ngspice, KLayout, AppCSXCAD, openEMS, IIC-OSIC-TOOLS, Docker, Ubuntu
 
 > **Status:** Research characterization testbench, **not** a fabricated chip or a finished impedance-matched/stabilized RF amplifier. The repository is currently private pending a publication and sharing review.
 
 ## Overview
 
-This work explores a reproducible open-source flow for the **device-to-RF characterization** of a SiGe HBT. Starting with a biased 50 Ω two-port testbench, the workflow connects transistor operating-point behavior to gain, reflection, noise and stability metrics used in RFIC design.
+This work documents two linked phases of a 2026 KIT internship: (1) SiGe HBT device-level RF characterization using Xschem/Ngspice and (2) GDSII-based passive-structure EM simulation with KLayout, AppCSXCAD and openEMS. The broader original IEEE-style report, including captured simulation plots, is provided below.
 
 The work covers:
 - DC sweeps: collector current versus base-emitter and collector-emitter voltages.
@@ -22,6 +22,10 @@ The work covers:
 - Smith-chart interpretation and S-, Y-, Z-parameter representations.
 - Noise figure (**NF**), minimum noise figure (**NFmin**), equivalent noise resistance (**Rn**), and optimum source reflection coefficient (**Sopt**).
 - Post-processing of **Rollett stability factor K**, `|Δ|` and maximum stable gain (**MSG**) from S-parameters.
+- **Ready-made GSG line**: example-based openEMS flow validation; S11/S21 and impedance results for 8–12 GHz.
+- **Custom Metal1–TopMetal2 line**: 200 µm × 20 µm signal strip over a 240 µm × 200 µm ground plane; two-port EM analysis.
+- **Three-port T-junction**: port-detection workflow adapted from an existing generic N-port script; S-matrix, passivity and reciprocity checks.
+- **DRC/LVS verification**: IHP SG13G2 npn13G2 PCell test layout; zero reported DRC violations and an LVS match after a compatible netlist was prepared.
 
 ## Analysis flow
 
@@ -35,6 +39,25 @@ flowchart LR
 ```
 
 The schematic uses an `npn13G2` device with RF input/output ports, coupling capacitors, and bias inductors. The passive values in this early testbench are highly idealized. The study is intended to **characterize the device and establish a simulation workflow**, rather than present a physically realizable matching network.
+
+## Original internship reports and plotted evidence
+
+- **[Full internship report: circuit and EM verification (PDF, 9 pages)](docs/Ceyla_RFIC_IEEE_Two_Column_Report.pdf)** — primary project overview, original simulation plots and figure screenshots. Includes SiGe HBT, GSG/EM line, custom T-junction and DRC/LVS.
+- **[IIC-OSIC-TOOLS installation and localhost guide (PDF, 14 pages)](docs/IIC_OSIC_TOOLS_Installation_and_Localhost_Guide.pdf)** — Ubuntu/Windows setup, Docker, noVNC, persistent storage, and PDK/tool verification.
+- [Detailed RF characterization notes](docs/methodology.md) and [selected results](docs/results.md).
+
+**Evidence provenance:** The graphs and screenshots in these PDFs come from the supplied internship documents. The attached text-based RF testbench represents only **one** configuration; independent model runs and full openEMS project source trees have not been repackaged into this repository.
+
+## EM results and physical verification
+
+| Test structure | Selected documented result | Scope |
+| --- | --- | --- |
+| Ready GSG line (reference example) | At 10 GHz: **S11 −35.00 dB**, **S21 −0.016 dB** | Verification of an existing openEMS workflow, **not** claimed as an original layout |
+| Custom Metal1–TopMetal2 line | At 10 GHz: **S11 ≈ −36 dB**, **S21 ≈ −0.045 dB** | Custom geometry; report presents Port-1 excitation |
+| Custom T-junction | ~−3.60 dB transmission branches and ~−9.8 dB reflections in a documented example point | Three-port Touchstone extraction, passivity/reciprocity checks; original example script adapted |
+| npn13G2 PCell | Reported **0 DRC violations** and successful LVS match | Single-device verification, not a complete IC layout signoff |
+
+The report explicitly notes that a full independent two-port S-matrix for the custom metal line would require exciting Port 2 as well; mesh-convergence analysis was also left for further work.
 
 ## Selected findings
 
@@ -52,6 +75,8 @@ These are **reported simulation observations**, not laboratory measurements. App
 ## Repository guide
 
 - [Simulation netlist](simulations/S1_npn13G2_RF_Biased_Testbench.spice) — preserved snapshot supplied from the internship.
+- [Original full KIT internship report](docs/Ceyla_RFIC_IEEE_Two_Column_Report.pdf) — circuit, EM and layout evidence.
+- [Installation and localhost guide](docs/IIC_OSIC_TOOLS_Installation_and_Localhost_Guide.pdf) — Docker/noVNC setup.
 - [Technical methodology](docs/methodology.md) — what each analysis does, and why.
 - [Results and interpretation](docs/results.md) — scope and documented observations.
 - [Reproducibility notes](docs/reproducibility.md) — PDK dependencies, simulator setup and known differences between artifacts.
@@ -72,11 +97,11 @@ These are **reported simulation observations**, not laboratory measurements. App
 - No custom RF matching network or stabilization network was finalized in this stage.
 - The 1 MHz–500 GHz setup is a numerical sweep range; it is **not** a claim of useful operation or validated model accuracy throughout that range.
 - Large ideal coupling capacitors and RF chokes simplify the testbench, rather than represent final integrated passives.
-- Layout, parasitic extraction, EM verification and tape-out are **not** demonstrated by the uploaded testbench.
+- Layout-based EM **is documented separately** in the internship PDF, but the original GDSII, FDTD meshes and Touchstone files are not yet supplied as standalone repository artifacts. Tape-out and measured silicon are **not** claimed.
 - Before publishing, add validated run configurations and original plots with explicit frequency and bias annotations.
 
 ## Attribution
 
-This repository documents work associated with Ece Ceyla Demir's 2026 research internship at KIT. The IHP SG13G2 technology files and third-party EDA tools are **not redistributed here**; obtain them from their official sources and observe their licenses. Publication of institutional research artifacts is subject to the applicable supervisor/institution permissions.
+This repository documents work associated with Ece Ceyla Demir's 2026 research internship at KIT. The installation guide and IEEE-style report were provided by the researcher; see those documents for original references. The IHP SG13G2 technology files and third-party EDA tools are **not redistributed here**; obtain them from their official sources and observe their licenses. Publication of institutional research artifacts is subject to the applicable supervisor/institution permissions.
 
 **License:** No public redistribution license is granted at this stage.
