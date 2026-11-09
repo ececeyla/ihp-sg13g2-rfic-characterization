@@ -1,0 +1,7 @@
+cff-version: 1.2.0
+message: "If you use this material, please credit the author and the IHP SG13G2 OpenPDK."
+title: "SiGe HBT RF Characterization with IHP SG13G2 OpenPDK"
+authors:
+  - family-names: "Demir"
+    given-names: "Ece Ceyla"
+type: software
