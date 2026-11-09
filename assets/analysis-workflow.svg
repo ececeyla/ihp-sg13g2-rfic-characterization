@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="410" viewBox="0 0 1200 410" role="img" aria-label="Open-source SiGe HBT characterization workflow">
+<style>
+text{font-family:Arial,Helvetica,sans-serif;fill:#e8effa}
+.title{font-size:31px;font-weight:700}
+.subtitle{font-size:17px;fill:#acbed5}
+.node{fill:#172740;stroke:#476e98;stroke-width:2}
+.main{font-size:19px;font-weight:700}
+.sub{font-size:15px;fill:#9fb6d3}
+.line{stroke:#69c9d8;stroke-width:3;fill:none}
+</style>
+<rect width="1200" height="410" rx="18" fill="#0b1322"/>
+<text x="56" y="60" class="title">Open-source SiGe HBT RF characterization</text>
+<text x="56" y="94" class="subtitle">IHP SG13G2 OpenPDK  ·  Xschem  ·  Ngspice  ·  50 Ω two-port testbench</text>
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#69c9d8"/></marker></defs>
+<rect x="52" y="148" width="206" height="120" rx="12" class="node"/>
+<text x="74" y="185" class="main">SiGe HBT model</text>
+<text x="74" y="217" class="sub">npn13G2</text>
+<text x="74" y="243" class="sub">IHP SG13G2</text>
+<path d="M258 208 H289" class="line" marker-end="url(#arrow)"/>
+<rect x="294" y="148" width="206" height="120" rx="12" class="node"/>
+<text x="315" y="185" class="main">Bias &amp; two ports</text>
+<text x="315" y="217" class="sub">DC operating point</text>
+<text x="315" y="243" class="sub">50 Ω input / output</text>
+<path d="M500 208 H531" class="line" marker-end="url(#arrow)"/>
+<rect x="536" y="148" width="206" height="120" rx="12" class="node"/>
+<text x="558" y="185" class="main">Ngspice analyses</text>
+<text x="558" y="217" class="sub">DC, AC, S-parameters</text>
+<text x="558" y="243" class="sub">Noise-enabled SP</text>
+<path d="M742 208 H773" class="line" marker-end="url(#arrow)"/>
+<rect x="778" y="148" width="365" height="120" rx="12" class="node"/>
+<text x="803" y="185" class="main">RF performance interpretation</text>
+<text x="803" y="217" class="sub">S11 / S21 / S12 / S22  ·  NF / NFmin</text>
+<text x="803" y="243" class="sub">Smith charts  ·  K / |Δ| / MSG</text>
+<text x="56" y="339" class="subtitle">Research testbench — no matching-network sign-off, silicon fabrication or measured IC results claimed.</text>
+</svg>
