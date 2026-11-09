@@ -4,6 +4,7 @@ on:
     paths:
       - 'scripts/**'
       - 'tests/**'
+      - 'examples/**'
       - '.github/workflows/python-tests.yml'
   pull_request:
     paths:

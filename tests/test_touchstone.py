@@ -47,6 +47,23 @@ class TouchstoneTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 read_touchstone(p)
 
+    def test_synthetic_fixture_is_parseable_but_not_historical_data(self):
+        fixture = Path(__file__).resolve().parents[1] / 'examples' / 'synthetic_two_port_TEST_ONLY.s2p'
+        freq, matrix, z0 = read_touchstone(fixture)
+        np.testing.assert_allclose(freq / 1e9, [8.0, 10.0, 12.0])
+        self.assertEqual(matrix.shape, (3, 2, 2))
+        self.assertEqual(z0, 50.0)
+        np.testing.assert_allclose(matrix[0, 1, 0], .8 - .1j)
+        values, _ = checks(matrix)
+        self.assertTrue(np.all(values < 1.0))
+
+    def test_bad_frequency_order_rejected(self):
+        with tempfile.TemporaryDirectory() as d:
+            p = Path(d) / 'decreasing.s1p'
+            p.write_text('# GHz S RI R 50\\n10 0.2 0\\n8 0.2 0\\n')
+            with self.assertRaises(ValueError):
+                read_touchstone(p)
+
 
 if __name__ == '__main__':
     unittest.main()

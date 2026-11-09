@@ -107,6 +107,18 @@ These are **reported simulation observations**, not laboratory measurements. App
 - [Reproducibility notes](docs/reproducibility.md) — PDK dependencies, simulator setup and known differences between artifacts.
 - [Publication checklist](docs/publication-checklist.md) — what is confirmed and what needs review before releasing the repository publicly.
 
+## Reproducibility at a glance
+
+For a reviewer-friendly distinction between the **original 2026 simulations** and the **reconstructed 2026 tooling**, see the [verification and evidence matrix](docs/verification-matrix.md).
+
+The Touchstone analyzer includes a runnable **synthetic-only** 2-port input, so it can be demonstrated without fabricating the missing original `.s2p`:
+
+```bash
+python scripts/analyze_touchstone.py examples/synthetic_two_port_TEST_ONLY.s2p --freq-ghz 10
+```
+
+The example S-parameters are arbitrary parser-test data, **not** internship results. Historical results remain in the original report PDF.
+
 ## Reconstructed analysis and layout helpers
 
 The following are **newly written reference utilities (November 2026), not the original KIT internship Python sources**:
