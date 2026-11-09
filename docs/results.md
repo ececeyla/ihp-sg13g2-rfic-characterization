@@ -60,3 +60,7 @@ The internship connects transistor-level RF figures of merit to physical layout 
 - The source repository currently includes a standalone `.spice` HBT snapshot but **not** the original EM `.gds`, Python FDTD scripts, Touchstone outputs or full schematic `.sch` files.
 - The SPICE snapshot bias values differ from those used in some report figures. Re-run each corresponding testbench before claiming numerical reproducibility.
 - Some report text has transcription/formatting errors in PDF and one T-junction result has a sign inconsistency; the values above follow the accompanying explanatory narrative and figures rather than claiming a fresh numerical validation.
+
+## Report figure files
+
+Three original KLayout screenshots from pages 5–7 have been separately archived under `assets/report-*.jpg` and linked from the README. The numerical results are sourced from the original PDF, not those screenshots. See [figure provenance](figure-provenance.md).
