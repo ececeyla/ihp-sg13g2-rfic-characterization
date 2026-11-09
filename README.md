@@ -130,6 +130,13 @@ python scripts/run_auto_nport_interactive.py generated_gds/metal_2port_reconstru
 
 **The original** `S2_GSG_sim.s2p`, `metal_2port.gds` and the historical openEMS driver have not been recovered. Numerical matches to the report are **not claimed** for these fresh reconstructions.
 
+### Reconstructed GDS examples
+
+- [Downloadable 2-port line GDS](layout_examples/metal_2port_reconstructed.gds) — geometries and layers from Table V of the original report.
+- [Downloadable illustrative 3-port T-junction GDS](layout_examples/t_junction_illustrative.gds) — layer assignment from the original report; **T-arm dimensions are illustrative because the original sizes were not archived**.
+
+These are **newly generated layout files, not original recovered GDSII**. They have not undergone SG13G2 DRC/LVS or an EM run. The Python generator can recreate their geometry; verify any subsequent output in KLayout against the actual PDK before using in a semiconductor flow.
+
 ## Reproducing the testbench
 
 1. Install and configure the **IHP SG13G2 OpenPDK** with Ngspice and, for schematic-level work, Xschem. The original environment used Ubuntu 24.04, Docker and IIC-OSIC-TOOLS.

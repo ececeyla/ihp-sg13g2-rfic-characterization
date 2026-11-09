@@ -51,3 +51,7 @@ For each driven port *j*, the runner executes its own FDTD simulation and calcul
 ## Historical evidence vs newly generated output
 
 The original report contains real historical plot screenshots and tables. The files `assets/report-*.jpg` come from that PDF; one should not equate them with the outputs of the newly written programs. The approximate X-band line results are transcribed into `data/reported_custom_line_xband.csv`, clearly marked as reported values rather than a new simulation or `S2_GSG_sim.s2p` file. The original `.s2p` and complete original EM driver have **not** been recovered.
+
+## Ready-to-download example GDS files
+
+The repository also includes `layout_examples/metal_2port_reconstructed.gds` and `layout_examples/t_junction_illustrative.gds`, created newly from the above geometric definitions using standard GDSII boundary records. These are **not the original KIT layout files**. They have been structurally checked as binary GDSII records but not verified in KLayout, nor simulated with openEMS.
