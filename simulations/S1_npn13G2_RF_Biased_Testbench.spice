@@ -1,0 +1,63 @@
+** sch_path: /foss/designs/tool_test/S1_npn13G2_RF_Biased_Testbench.sch
+**.subckt S1_npn13G2_RF_Biased_Testbench
+XQ1 VCE VBE 0 0 npn13G2 Nx=10 mm_ok=1
+V1 Vout 0 dc 0 ac 0 portnum 2 z0 50
+L3 net3 VCE 1
+C1 VCE Vout 1
+C2 net1 VBE 1
+L4 VBE net2 1
+V2 net2 0 0.85
+V3 net1 0 dc 0 ac 1 portnum 1 z0 50
+V4 net3 0 1.2
+**** begin user architecture code
+
+
+.lib /foss/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerHBT.lib hbt_typ
+
+
+
+
+.control
+set color0=white
+set color2=blue
+set color3=red
+set color4=red
+set color5=red
+
+save all
+op
+
+* Noise-enabled S-parameter analysis
+sp dec 100 1Meg 500G 1
+
+setplot sp1
+
+* Stability determinant
+let delta = s_1_1*s_2_2 - s_1_2*s_2_1
+
+let abs_s11 = sqrt(real(s_1_1)*real(s_1_1) + imag(s_1_1)*imag(s_1_1))
+let abs_s22 = sqrt(real(s_2_2)*real(s_2_2) + imag(s_2_2)*imag(s_2_2))
+let abs_delta = sqrt(real(delta)*real(delta) + imag(delta)*imag(delta))
+
+let s12s21 = s_1_2*s_2_1
+let abs_s12s21 = sqrt(real(s12s21)*real(s12s21) + imag(s12s21)*imag(s12s21))
+
+* Rollett stability factor
+let kf = (1 - abs_s11*abs_s11 - abs_s22*abs_s22 + abs_delta*abs_delta)/(2*abs_s12s21)
+
+* Maximum stable gain / MSG
+let ratio_s21_s12 = s_2_1/s_1_2
+let abs_ratio_s21_s12 = sqrt(real(ratio_s21_s12)*real(ratio_s21_s12) + imag(ratio_s21_s12)*imag(ratio_s21_s12))
+let msg_db = 10*log10(abs_ratio_s21_s12)
+
+plot kf
+plot abs_delta
+plot msg_db
+plot vdb(s_2_1)
+
+.endc
+
+
+**** end user architecture code
+**.ends
+.end
