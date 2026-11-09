@@ -2,6 +2,8 @@
 
 **DC, small-signal, S-parameter, noise and stability analysis of an RF-biased SiGe heterojunction bipolar transistor (HBT)** using an open-source EDA workflow.
 
+![RF characterization workflow](assets/analysis-workflow.svg)
+
 **Context:** Summer 2026 research internship at Karlsruhe Institute of Technology (KIT)  
 **Researcher:** Ece Ceyla Demir · Electrical and Electronics Engineering, Middle East Technical University (METU)  
 **Technology:** IHP SG13G2 OpenPDK, `npn13G2` HBT  
