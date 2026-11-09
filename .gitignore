@@ -1,0 +1,31 @@
+# Simulation outputs and local files
+*.raw
+*.log
+*.out
+*.tr0
+*.ac0
+*.sw0
+*.bak
+*.bak_*
+*.swp
+*.swo
+*~
+.DS_Store
+__pycache__/
+.pytest_cache/
+.vscode/
+.idea/
+# Local / institutional PDK installations and tool environments
+pdk/
+pdks/
+ihp-sg13g2/
+iic-osic-tools/
+node_modules/
+.env
+.env.*
+# Avoid accidentally committing credentials or work machine configurations
+credentials/
+secrets/
+config.local.*
+# Leave intentional example configurations tracked
+!.env.example
