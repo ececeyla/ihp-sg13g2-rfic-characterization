@@ -13,7 +13,7 @@ The following descriptions are taken from an **internship working report dated J
 | NF / NFmin | Around 1.5 dB / 0.5 dB respectively in the lower-frequency region | Approximate values read from documented plots, not measurements |
 | Noise resistance | Approximately 21 Ω at lower frequencies | Bias- and frequency-dependent |
 | Sopt | Noise-optimum source reflection differs from a perfect 50 Ω match | No implemented noise-match circuit |
-| K / |Delta| / MSG | K below 1 over a large portion of sweep; MSG falls with frequency | Unconditional stability **not** demonstrated |
+| K / determinant magnitude / MSG | K below 1 over a large portion of sweep; MSG falls with frequency | Unconditional stability **not** demonstrated |
 
 ## Main engineering takeaway
 
