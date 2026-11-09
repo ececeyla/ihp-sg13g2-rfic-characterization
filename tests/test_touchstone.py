@@ -60,7 +60,7 @@ class TouchstoneTests(unittest.TestCase):
     def test_bad_frequency_order_rejected(self):
         with tempfile.TemporaryDirectory() as d:
             p = Path(d) / 'decreasing.s1p'
-            p.write_text('# GHz S RI R 50\\n10 0.2 0\\n8 0.2 0\\n')
+            p.write_text('# GHz S RI R 50\n10 0.2 0\n8 0.2 0\n')
             with self.assertRaises(ValueError):
                 read_touchstone(p)
 
