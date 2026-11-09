@@ -46,7 +46,7 @@ This command has **not been executed as part of the GitHub import**.
 4. Generate Touchstone and plot S11/S21/phase; for the N-port example, excite each detected port sequentially.
 5. Verify a separate single-HBT PCell with the SG13G2 DRC/LVS flow.
 
-**Not yet available as standalone repository files:** the original `.gds` geometries, the modified `run_auto_nport_interactive.py` and `analyze_touchstone.py` scripts, `.s2p/.s3p` outputs, full extracted S-matrices, and the original Xschem schematic source.
+**Historical originals not yet available:** the original `.gds` geometries, historical `run_auto_nport_interactive.py` and `analyze_touchstone.py` scripts, `.s2p/.s3p` outputs, full extracted S-matrices, and the original Xschem schematic source. **New reconstruction scripts** are now present under `scripts/`; they are independent new implementations, not the archived historical programs. The openEMS runner requires a verified SG13G2 project driver before any FDTD results can be generated.
 
 ## Verification status
 

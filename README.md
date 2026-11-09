@@ -56,6 +56,21 @@ The following three images were extracted **directly from the original 9-page IE
 | :--: | :--: | :--: |
 | ![KLayout custom line from report](assets/report-custom-line-klayout.jpg) | ![KLayout T-junction from report](assets/report-tjunction-klayout.jpg) | ![KLayout HBT layout from report](assets/report-hbt-layout.jpg) |
 
+### Original EM/verification plots from the report
+
+| Custom line S11 | Custom line S21 | T-junction full S-matrix |
+| :--: | :--: | :--: |
+| ![Original custom line S11 sweep](assets/report-line-s11.jpg) | ![Original custom line S21 sweep](assets/report-line-s21.jpg) | ![Original three-port response](assets/report-tjunction-sparams.jpg) |
+
+![Original 10 GHz T-junction matrix and checks](assets/report-tjunction-matrix.jpg)
+
+<details><summary>Additional original verification screenshots</summary>
+
+![DRC output from historical report](assets/report-drc-log.jpg)
+![LVS output from historical report](assets/report-lvs-log.jpg)
+
+</details>
+
 See [figure provenance and limitations](docs/figure-provenance.md). Numeric simulation plots, full verification logs and results remain in the [original report PDF](docs/Ceyla_RFIC_IEEE_Two_Column_Report.pdf).
 
 ## EM results and physical verification
@@ -91,6 +106,29 @@ These are **reported simulation observations**, not laboratory measurements. App
 - [Results and interpretation](docs/results.md) — scope and documented observations.
 - [Reproducibility notes](docs/reproducibility.md) — PDK dependencies, simulator setup and known differences between artifacts.
 - [Publication checklist](docs/publication-checklist.md) — what is confirmed and what needs review before releasing the repository publicly.
+
+## Reconstructed analysis and layout helpers
+
+The following are **newly written reference utilities (November 2026), not the original KIT internship Python sources**:
+
+- [Touchstone N-port parser, plots and checks](scripts/analyze_touchstone.py) (RI/MA/DB, passivity, reciprocity, phase and CSV/JSON output).
+- [Automatic N-port marker detection and sequential openEMS runner](scripts/run_auto_nport_interactive.py).
+- [Parametric GDS generator](scripts/generate_gds_examples.py) based on the report's layer numbers and documented 2-port dimensions.
+- [openEMS driver contract](scripts/openems_model_driver.template.py). A real run **requires the original verified SG13G2 material stack / geometry importer**, and cannot be performed from the PDF alone.
+- [Python unit tests](tests/test_touchstone.py) and [setup/reconstruction notes](docs/reconstructed-tools.md).
+- [Transcribed X-band result table](data/reported_custom_line_xband.csv) with original-source attribution, **not** re-simulated numbers or a full measured Touchstone sweep.
+
+```bash
+python -m pip install numpy matplotlib
+python scripts/analyze_touchstone.py path/to/your.s3p --freq-ghz 10
+python -m unittest discover -s tests -v
+# GDS generation requires the optional gdstk package
+python scripts/generate_gds_examples.py --out-dir generated_gds
+# Marker discovery only (no EM results):
+python scripts/run_auto_nport_interactive.py generated_gds/metal_2port_reconstructed.gds --dry-run
+```
+
+**The original** `S2_GSG_sim.s2p`, `metal_2port.gds` and the historical openEMS driver have not been recovered. Numerical matches to the report are **not claimed** for these fresh reconstructions.
 
 ## Reproducing the testbench
 

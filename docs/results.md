@@ -57,7 +57,7 @@ The internship connects transistor-level RF figures of merit to physical layout 
 ## Artifact completeness and caveats
 
 - Original plots and screenshots are embedded in the **full report PDF**, which is tracked here.
-- The source repository currently includes a standalone `.spice` HBT snapshot but **not** the original EM `.gds`, Python FDTD scripts, Touchstone outputs or full schematic `.sch` files.
+- The source repository includes an original `.spice` HBT snapshot and **separately identified new reconstruction helpers** for GDS generation and Touchstone analysis. The original EM `.gds`, Python FDTD scripts, Touchstone outputs and full `.sch` files are still missing.
 - The SPICE snapshot bias values differ from those used in some report figures. Re-run each corresponding testbench before claiming numerical reproducibility.
 - Some report text has transcription/formatting errors in PDF and one T-junction result has a sign inconsistency; the values above follow the accompanying explanatory narrative and figures rather than claiming a fresh numerical validation.
 

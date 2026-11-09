@@ -1,0 +1,4 @@
+frequency_ghz,s11_db_approx,s21_db_approx,s21_phase_deg_approx,source
+8,-38,-0.041,-3.8,"KIT IEEE report p. 5, Table VI; historical simulated summary, NOT new run"
+10,-36,-0.045,-4.8,"KIT IEEE report p. 5, Table VI; historical simulated summary, NOT new run"
+12,-34.5,-0.049,-5.7,"KIT IEEE report p. 5, Table VI; historical simulated summary, NOT new run"
