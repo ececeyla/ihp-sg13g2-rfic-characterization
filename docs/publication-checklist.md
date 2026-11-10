@@ -1,15 +1,9 @@
-# Publication checklist
+# Project and sharing notes
 
-Repository is intentionally **private** until sharing permissions are reviewed.
+This repository contains a personal KIT internship report and related characterization work. The repository owner has confirmed permission to share project materials.
 
-- [ ] Confirm with the KIT supervisor/institution which internship artifacts may be released publicly.
-- [ ] Confirm the source netlist contains no institutional or proprietary information before public release.
-- [ ] Keep IHP model/PDK library files and tool source clones outside the repository.
-- [ ] Verify all citations, screenshots and figures are permissible to redistribute.
-- [ ] Record explicit ownership/attribution if code or data were co-developed.
-- [ ] Re-run the documented bias configurations and verify figures before making stronger numerical claims.
-- [ ] Do not present the 500 GHz sweep bound as demonstrated operating bandwidth.
-- [ ] Verify that the work is described as **HBT characterization**, not a fabricated RFIC.
-- [ ] Decide on a code license only after confirming redistribution rights.
+IHP SG13G2 PDK models and external EDA packages are **not included** and should be obtained from their original maintainers.
 
-Potential future additions: original authorized plots, Xschem source schematic, tested run scripts, model and simulator version manifest, output tables, matching/stabilization experiments.
+When adding more files, keep the simulation conditions with the results: model corner, bias, ports, frequency range, process stack and mesh settings. The current repo contains simulation results, not silicon measurements or a finished amplifier design. Some scripts and layout samples are supplementary implementations made after the internship, as described in [analysis tools](reconstructed-tools.md).
+
+The 500 GHz upper bound in a sweep configuration is not demonstrated useful operating bandwidth. The original report remains the reference for plotted results.

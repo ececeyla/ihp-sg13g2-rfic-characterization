@@ -36,7 +36,7 @@ Adapt this to your own environment. A suggested invocation after installing the 
 ngspice simulations/S1_npn13G2_RF_Biased_Testbench.spice
 ```
 
-This command has **not been executed as part of the GitHub import**.
+Run this command after installing the correct PDK models and checking the bias conditions.
 
 ## EM flow described in the report
 
@@ -46,8 +46,8 @@ This command has **not been executed as part of the GitHub import**.
 4. Generate Touchstone and plot S11/S21/phase; for the N-port example, excite each detected port sequentially.
 5. Verify a separate single-HBT PCell with the SG13G2 DRC/LVS flow.
 
-**Historical originals not yet available:** the original `.gds` geometries, historical `run_auto_nport_interactive.py` and `analyze_touchstone.py` scripts, `.s2p/.s3p` outputs, full extracted S-matrices, and the original Xschem schematic source. **New reconstruction scripts** are now present under `scripts/`; they are independent new implementations, not the archived historical programs. The openEMS runner requires a verified SG13G2 project driver before any FDTD results can be generated.
+**Original files not currently included:** the original `.gds` geometries, historical `run_auto_nport_interactive.py` and `analyze_touchstone.py` scripts, `.s2p/.s3p` outputs, full extracted S-matrices, and the original Xschem schematic source. **New reconstruction scripts** are now present under `scripts/`; they are independent new implementations, not the archived historical programs. The openEMS runner requires a verified SG13G2 project driver before any FDTD results can be generated.
 
 ## Verification status
 
-The attached documents report the completed experiments. The present repository has not independently reproduced all simulations, validated mesh convergence or tape-out performance. The EM plots shown in the report are real historical artifacts from that report, not synthetic/recreated GitHub charts.
+The attached documents report the completed experiments. Not every simulation has been rerun using the files currently available. Mesh convergence and silicon validation are outside the scope of this archive. The EM plots shown in the report are real historical artifacts from that report, not synthetic/recreated GitHub charts.
